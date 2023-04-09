@@ -1,19 +1,22 @@
 const Turn = (() => {
-  const thisTurn = () => 1
-  const addTurn = newTurn => thisTurn + newTurn
-  return { thisTurn, addTurn }
+  let counter = 1
+  const thisTurn = () => {
+    if (counter % 2 === 0) {
+      counter += 1
+      return 'X'
+    } else {
+      counter += 1
+      return 'O'
+    }
+  }
+  return ({ thisTurn })
 })()
 
 const Board = (() => {
   const layout = new Array(9)
   const charChar = () => {
-    if (Turn.thisTurn % 2 === 0) {
-      Turn.addTurn(1)
-      return 'X'
-    } else {
-      Turn.addTurn(1)
-      return 'O'
-    }
+    const turn = Turn.thisTurn()
+    return turn
   }
 
   const createLayout = () => {
