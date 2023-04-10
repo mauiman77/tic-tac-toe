@@ -1,11 +1,14 @@
 const Turn = (() => {
   let counter = 1
+  const incrementTurn = () => {
+    counter += 1
+  }
   const thisTurn = () => {
     if (counter % 2 === 0) {
-      counter += 1
+      incrementTurn()
       return 'X'
     } else {
-      counter += 1
+      incrementTurn()
       return 'O'
     }
   }
@@ -35,12 +38,11 @@ const Board = (() => {
   return { layout, createLayout }
 })()
 
-const Player = (playerMarker) => {
-  return { playerMarker }
+const Player = (playerName) => {
+  return { playerName }
 }
 
 // ----
-
 Board.createLayout()
 const playerX = Player('X')
 const playerO = Player('O')
