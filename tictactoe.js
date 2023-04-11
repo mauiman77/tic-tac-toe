@@ -8,10 +8,10 @@ const Turn = (() => {
     counter += 1
   }
   const thisTurn = () => {
-    if (counter % 2 === 0) {
-      return 'O'
+    if (counter % 2 !== 0) {
+      return player1.getMarker()
     } else {
-      return 'X'
+      return player2.getMarker()
     }
   }
   return ({ thisTurn, incrementTurn })
@@ -19,7 +19,7 @@ const Turn = (() => {
 
 const Board = (() => {
   // const layout = new Array(9)
-  const nextTurn = () => {
+  const addMarker = () => {
     const turn = Turn.thisTurn()
     return turn
   }
@@ -33,7 +33,7 @@ const Board = (() => {
       pageBoard.appendChild(cell)
       cell.addEventListener('click', () => {
         if (!cell.textContent) {
-          cell.textContent = nextTurn()
+          cell.textContent = addMarker()
           Turn.incrementTurn()
         }
       })
